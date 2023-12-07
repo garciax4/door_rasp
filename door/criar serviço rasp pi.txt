@@ -1,0 +1,28 @@
+criar um serviço no raspberry pi:
+
+sudo nano /etc/systemd/system/myscript.service
+
+
+[Unit]
+Description=My Python Script
+
+[Service]
+ExecStart=/usr/bin/python3 /home/pi/my_scripts/myscript.py
+Restart=always
+User=pi
+Group=pi
+Environment=PATH=/usr/bin:/bin:/usr/local/bin
+WorkingDirectory=/home/pi/my_scripts/
+
+[Install]
+WantedBy=default.target
+
+
+sudo systemctl daemon-reload
+
+
+sudo systemctl enable myscript.service
+sudo systemctl start myscript.service
+
+
+sudo systemctl status myscript.service
